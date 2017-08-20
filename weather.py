@@ -1,4 +1,11 @@
-filename = "football-league-results.txt"
+
+# Assume the attached file port-harcourt-weather.txt contains weather data for
+# Port Harcourt in 2016.  Download this file and write a program that returns the
+# day number (column one) with the smallest temperature spread (the maximum
+# temperature is the second column, the minimum the third column).
+
+
+filename = "port-harcourt-weather.txt"
 
 def weatherReport():
     with open(filename) as file:

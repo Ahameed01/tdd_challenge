@@ -1,14 +1,37 @@
-filename = "football-league-results.txt"
+docname = "football-league-results.txt"
+def footballLeagueResult():
+	with open(docname) as results:
+		results.next()
+		goalDifference = []
+		clubNamesList = []
+		for team in results:
+			team = team.split()
+			clubNames = []
+			clubData = []
 
-def leagueResult():
-    with open(filename) as result:
-        result.next()
-        for team in result:
-            team = team.split()
-            print team
+			for data in team:
+				try:
+					data = int(data)
+					clubData.append(data)
+				except ValueError:
+					stringData = str(data)
+					if stringData != "-":
+						clubNames.append(stringData)
+					pass
+			if len(clubData) > 0:
+				goalFor = int(clubData[4])
+				goalAgainst = int(clubData[5])
+				del clubNames[:1]
+				clubNames = ' '.join(clubNames)
+				clubNamesList.append(clubNames)
+				goalDifference.append(goalFor - goalAgainst)
 
-        pass
+		teamGoalPerformance = dict(zip(clubNamesList,goalDifference))
+		lowestDiffTeam = min(sorted(teamGoalPerformance.keys()))
+		lowestDiffScore = min(sorted(teamGoalPerformance.values()))
 
 
+        print (str(lowestDiffTeam) + ' with ' + str(lowestDiffScore) + " goal difference is the team with the smallest difference in 'for' and 'against' goals")
 
-leagueResult()
+
+footballLeagueResult()
